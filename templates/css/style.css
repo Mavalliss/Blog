@@ -80,6 +80,10 @@ body {
     margin-right: 15px;
 }
 
+.header-right__link:hover {
+    background: rgba(49, 90, 242, 0.75);
+}
+
 /* INTRO */
 .intro {
     padding-top: 40px;
