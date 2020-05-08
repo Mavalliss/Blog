@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    {% if last_article %}
+        <section class="intro" id="intro"> {# LATEST ARTICLE #}
+            <div class="container intro-container">
+                <div class="intro-content">
+                    <div class="intro-new">
+                        <span class="intro-new__text">NEW</span>
+                        <div class="intro-new__block">
+                            <img src="{% static 'heart.svg' %}" alt="no image">
+                            <span class="intro-new__block-num">25</span>
+                        </div>
+                        <div class="intro-new__block">
+                            <img src="{% static 'message.svg' %}" alt="no image">
+                            <span class="intro-new__block-num">25</span>
+                        </div>
+                        <div class="intro-new__block">
+                            <img src="{% static 'eye.svg' %}" alt="no image">
+                            <span class="intro-new__block-num">25</span>
+                        </div>
+                    </div>
+                    <h1 class="intro__title">{{ last_article.article_title }}</h1>
+                    <p class="intro__subtitle">{{ last_article.article_text }}</p>
+                    <button class="intro__button">Читать</button>
+                </div>
+                <img src="{{ last_article.article_image.url }}" class="intro__img">
+            </div>
+        </section>
+    {% endif %}
+    {% if all_articles %}
+        <section class="article" id="article">
+            <div class="container">
+                <div class="article-top">
+                    <h1 class="article__title">Другие статьи</h1>
+                    <button><img src="{% static 'filter.svg' %}"></button>
+                </div>
+                <div class="row">
+                    {% for article in all_articles %}
+                        <div class="col s4 article-block">
+                            <span class="article__date">{{ article.pub_date }}</span>
+                            <img src="{{ article.article_image.url }}" alt="no image" class="article-block__img">
+                            {% if article.article_meta != None %}
+                                <h2 class="article__name">{{ article.article_meta }}</h2>
+                            {% endif %}
+                            <a class="article__desc" href="#">{{ article.article_title }}</a>
+                            <div class="article-new">
+                                <div class="article-new__block">
+                                    <img src="{% static 'heart.svg' %}" alt="no image">
+                                    <span class="article-new__block-num">25</span>
+                                </div>
+                                <div class="article-new__block">
+                                    <img src="{% static 'message.svg' %}" alt="no image">
+                                    <span class="article-new__block-num">25</span>
+                                </div>
+                                <div class="article-new__block">
+                                    <img src="{% static 'eye.svg' %}" alt="no image">
+                                    <span class="article-new__block-num">25</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}

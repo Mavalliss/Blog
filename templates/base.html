@@ -1,0 +1,30 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{% static 'css/materialize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+
+    <title>{% block title %}Блог{% endblock %}</title>
+</head>
+<body>
+<header class="header" id="header"> {# HEADER #}
+    <div class="header-left">
+        <a href="base.html"><img src="{% static 'logo.png' %}" alt="Лого"></a>
+        <a class="header-left__text" href="#">{% block header_text %}Блог{% endblock %}</a>
+    </div>
+    <div class="header-right">
+        <a class="header-right__link" id="btn_add-article" href="add_article/">Добавить статью</a>
+        <button><img src="{% static 'email.svg' %}" alt="email"></button>
+        <button><img src="{% static 'uchenik.svg' %}" alt="email"></button>
+        <button><img src="{% static 'logout.svg' %}" alt="email"></button>
+    </div>
+</header>
+{% block content %}{% endblock %}
+</body>
+</html>

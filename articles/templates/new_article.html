@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавление статьи{% endblock %}
+{% block header_text %}<a href="../../articles/">Блог</a> <span class="spliter">/</span>
+    <a href="../add_article/">Добавить статью</a>{% endblock %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+
+    <section class="add" id="add">
+        <div class="container">
+            <h1 class="add__title">Добавить статью</h1>
+            <form action="{% url 'articles:add_article' %}" method="post" class="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" class="form__meta" placeholder="Введите заголовок статьи"
+                       name="article-meta" required>
+                <input type="text" class="form__input" placeholder="Введите название статьи"
+                       name="article-title" required>
+                <button class="form__btn" type="submit">Опубликовать</button>
+                <br>
+                <div class="form-bottom">
+                    <textarea class="form__text" name="article-text" required></textarea>
+                    <div class="form-file">
+                        <span class="form-file__label">Загрузить изображение</span>
+                        <label class="form-file-block">
+                            <input type="file" class="form-file__input" id="fileIn" accept=".png, .jpg, .jpeg"
+                                   name="article-image">
+                            <span class="form-file__choose">Выбрать</span>
+                            <div class="img">
+                                <button class="form-file__close" type="button"><img src="{% static 'media/close.svg' %}"
+                                                                                    alt="Закрыть"></button>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
